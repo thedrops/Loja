@@ -12,6 +12,16 @@ package loja.bean;
 public class Cliente {
     int id;
     String nome;
+    String telefone;
+    Endereco endereco;
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
 
     public int getId() {
         return id;
