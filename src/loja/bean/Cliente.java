@@ -13,7 +13,16 @@ public class Cliente {
     int id;
     String nome;
     String telefone;
-    Endereco endereco;
+    int endereco;
+    String cpf;
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
 
     public String getTelefone() {
         return telefone;
@@ -38,4 +47,15 @@ public class Cliente {
     public void setNome(String nome) {
         this.nome = nome;
     }
+    
+    /* Exemplo de criação para o banco
+    
+        Cliente cliente = new Cliente();
+        cliente.setNome("José");
+        cliente.setCpf("1234");
+        ClienteDAO dao = new ClienteDAO();
+        
+        boolean b = dao.inserir(cliente.getNome(),cliente.getCpf());
+    */
+    
 }
