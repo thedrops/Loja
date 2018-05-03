@@ -29,6 +29,7 @@ public class FXMLCadastroCliente implements Initializable {
     @FXML private TextField nome;
     @FXML private TextField telefone;
     @FXML private TextField id;
+    @FXML private TextField cpf;
     
     //Dados endereco
     
@@ -47,10 +48,11 @@ public class FXMLCadastroCliente implements Initializable {
     Cliente cliente = new Cliente();
     cliente.setNome(nome.getText());
     cliente.setTelefone(telefone.getText());
+    cliente.setCpf(cpf.getText());
     ClienteDAO dao = new ClienteDAO(); 
     boolean b = dao.inserir(cliente.getNome(),cliente.getCpf(),cliente.getTelefone());
-    if(b){System.out.println("deu bom na atualização do cliente");}
-    else{System.out.println("deu ruim");}
+    if(!b){System.out.println("Erro criação de cliente");}
+
         
         //cadastrar Endereço
     Endereco endereco = new Endereco(estado.getText(),cidade.getText(),rua.getText(),
@@ -59,10 +61,30 @@ public class FXMLCadastroCliente implements Initializable {
     
     boolean c  = enderecoDAO.inserir(endereco.getEstado(),endereco.getCidade(),
             endereco.getRua(),endereco.getNumero(),endereco.getBairro(),endereco.getCep(),id.getText());
-    if(c)System.out.println("Boa");
+    if(!c)System.out.println("Erro criação endereço");
+    
+    if(b && c )
+        System.out.println("Cliente Cadastrado com Sucesso!");
         
     }
     
+    public void cancelar(ActionEvent event){
+        //zerar cliente
+    nome.setText("");
+    telefone.setText("");
+    id.setText("");
+    cpf.setText("");
+    
+    //Zerar endereco
+    estado.setText("");
+    cidade.setText("");
+    rua.setText("");
+    numero.setText("");
+    bairro.setText("");
+    cep.setText("");
+    
+    
+    }
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
