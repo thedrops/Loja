@@ -1,6 +1,7 @@
 package loja.dao;
 
 import conexao.Conexao;
+import java.sql.ResultSet;
 
 public class EnderecoDAO {
     
@@ -12,15 +13,12 @@ public class EnderecoDAO {
     }
 
     
-    public boolean inserir(String estado, String cidade,String rua,String numero, String bairro, String cep){
+    public boolean inserir(String estado, String cidade,String rua,String numero, String bairro, String cep,String id_cliente){
         
-        //Criar a sql com variáveis
-        String sql ="insert into cliente(estado,cidade,rua,numero,bairro,cep)"
-                + " values('"+estado+"','"+cidade+"'"+ ",'"+rua+"','"
-                + ""+numero+"','"+bairro+"'"+ ",'"+cep+"')";
-
         conexao.conectar();
-        
+
+        String sql ="insert into endereco_cliente(estado,cidade,rua,numero,bairro,cep,id_cliente) values('"+estado+"','"+cidade+"'"+ ",'"+rua+"'"+ ",'"+numero+"'"+ ",'"+bairro+"'"+ ",'"+numero+"'"+ ",'"+id_cliente+"')";
+
         //enviar sql para banco de dados
         boolean b = conexao.executarComandosSQL(sql);
         
@@ -28,24 +26,11 @@ public class EnderecoDAO {
         return b;
     }
     
-    public boolean atualizarNome(int id, String nome){
+    public boolean atualizarEndereco(String id, String estado,String cidade,String rua,String numero,String bairro,String cep){
         //criar sql com variáveis
-        String sql = "Update cliente set nome = '"+nome+"' where id = "+id;
+        String sql = "Update endereco_cliente set estado = '"+estado+"', cidade='"+cidade+"',"
+                + "rua='"+rua+"', numero='"+numero+"', bairro='"+bairro+"', cep='"+cep+"' where id_cliente = "+id;
 
-        //conectar com banco de dados
-        conexao.conectar();
-        
-        //enviar sql para banco de dados
-        boolean b = conexao.executarComandosSQL(sql);
-        
-        //retornar erro ou Ok
-        return b;
-    }
-    
-    public boolean atualizarCpf(int id, String cpf){
-        //criar sql com variáveis
-        String sql = "Update cliente set cpf = '"+cpf+"' where id = "+id;
-        
         //conectar com banco de dados
         conexao.conectar();
         

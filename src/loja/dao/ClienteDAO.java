@@ -26,9 +26,10 @@ public class ClienteDAO {
         return b;
     }
     
-    public boolean atualizarNome(int id, String nome){
+    public boolean atualizarCliente(String id, String nome,String telefone){
         //criar sql com variáveis
-        String sql = "Update cliente set nome = '"+nome+"' where id = "+id;
+        String sql = "Update cliente set nome = '"+nome+"', telefone = '"+telefone+"' where id = "+id;
+        
 
         //conectar com banco de dados
         conexao.conectar();

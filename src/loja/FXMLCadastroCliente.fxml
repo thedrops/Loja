@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="480.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="loja.FXMLCadastroCliente">
+   <children>
+      <SplitPane dividerPositions="0.29797979797979796" layoutX="60.0" layoutY="20.0" prefHeight="500.0" prefWidth="660.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <Label layoutX="181.0" layoutY="21.0" text="Cadastro Cliente" />
+                  <Label layoutX="25.0" layoutY="69.0" text="Nome" />
+                  <Label layoutX="30.0" layoutY="96.0" text="CPF" />
+                  <Label layoutX="18.0" layoutY="125.0" text="Telefone" />
+                  <Label layoutX="211.0" layoutY="172.0" text="Endereço" />
+                  <Label layoutX="30.0" layoutY="269.0" text="Rua" />
+                  <Label layoutX="29.0" layoutY="369.0" text="CEP" />
+                  <Label layoutX="22.0" layoutY="237.0" text="Cidade" />
+                  <Label layoutX="17.0" layoutY="303.0" text="Número" />
+                  <Label layoutX="23.0" layoutY="205.0" text="Estado" />
+                  <Label layoutX="24.0" layoutY="337.0" text="Bairro" />
+                  <Button layoutX="336.0" layoutY="412.0" mnemonicParsing="false" onAction="#cadastrarCliente" text="Cadastrar" />
+                  <Button layoutX="13.0" layoutY="412.0" mnemonicParsing="false" text="Cancelar" />
+                  <TextField fx:id="nome" layoutX="73.0" layoutY="65.0" />
+                  <TextField fx:id="cpf" layoutX="73.0" layoutY="92.0" />
+                  <TextField fx:id="telefone" layoutX="73.0" layoutY="121.0" />
+                  <TextField fx:id="estado" layoutX="73.0" layoutY="201.0" />
+                  <TextField fx:id="cidade" layoutX="73.0" layoutY="233.0" />
+                  <TextField fx:id="rua" layoutX="73.0" layoutY="265.0" />
+                  <TextField fx:id="numero" layoutX="73.0" layoutY="299.0" />
+                  <TextField fx:id="bairro" layoutX="73.0" layoutY="333.0" />
+                  <TextField fx:id="cep" layoutX="73.0" layoutY="365.0" />
+                  <Label layoutX="231.0" layoutY="69.0" text="ID" />
+                  <TextField fx:id="id" layoutX="254.0" layoutY="65.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
