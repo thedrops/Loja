@@ -49,7 +49,7 @@ public class FXMLUpdateCliente implements Initializable {
     cliente.setTelefone(telefone.getText());
     ClienteDAO dao = new ClienteDAO(); 
     boolean b = dao.atualizarCliente(id.getText(),cliente.getNome(),cliente.getTelefone());
-    if(!b){System.out.println("deu ruim cliente");}
+    if(!b){System.out.println("Erro na atualização do cliente");}
         
         //Atualizar Endereço
     Endereco endereco = new Endereco(estado.getText(),cidade.getText(),rua.getText(),
@@ -58,12 +58,21 @@ public class FXMLUpdateCliente implements Initializable {
     
     boolean c  = enderecoDAO.atualizarEndereco(id.getText(),endereco.getEstado(),endereco.getCidade(),
             endereco.getRua(),endereco.getNumero(),endereco.getBairro(),endereco.getCep());
-    if(!c)System.out.println("deu ruim endereco");
+    if(!c)System.out.println("Erro na atualização do endereco");
         
     if(b && c )System.out.println("Cliente atualizado com Sucesso!");
     }
     
+    public void deletarCliente(ActionEvent event){
     
+    ClienteDAO cliente = new ClienteDAO();
+    boolean d = cliente.deletar(id.getText());
+    if(d)
+            System.out.println("Cliente Deletado com sucesso!");
+    else
+            System.out.println("Erro na exclusão do cliente");
+        
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO

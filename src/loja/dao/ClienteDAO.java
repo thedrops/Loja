@@ -55,10 +55,10 @@ public class ClienteDAO {
         return b;
     }
     
-    public boolean deletar(int id){
+    public boolean deletar(String id){
         
         //criar sql com variáveis
-        String sql= "delete from cliente where id="+String.valueOf(id);
+        String sql= "delete from cliente where id="+id;
         
         //conectar com banco de dados
         conexao.conectar();
