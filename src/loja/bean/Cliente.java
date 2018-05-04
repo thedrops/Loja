@@ -10,7 +10,7 @@ package loja.bean;
  * @author a170060x
  */
 public class Cliente {
-    int id;
+    String id;
     String nome;
     String telefone;
     int endereco;
@@ -32,11 +32,11 @@ public class Cliente {
         this.telefone = telefone;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
