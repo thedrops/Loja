@@ -45,11 +45,11 @@ public class FXMLCadastroFuncionario implements Initializable {
         boolean b = false;
         boolean c = false;
         
-        boolean verificacaoCampos = (cpf.getText().equals("") && nome.getText().equals("") && datanasc == null && salario.getText().equals("") &&
-                cargo.getText().equals("") && numero.getText().equals("") && estado.getText().equals("") && cidade.getText().equals("") &&
-                rua.getText().equals("") && bairro.getText().equals("") && cep.getText().equals(""));
- 
-        if(verificacaoCampos){
+        boolean verificacaoCampos = (cpf.getText().equals("") || nome.getText().equals("") || datanasc == null || salario.getText().equals("") ||
+                cargo.getText().equals("") || numero.getText().equals("") || estado.getText().equals("") || cidade.getText().equals("") ||
+                rua.getText().equals("") || bairro.getText().equals("") || cep.getText().equals(""));
+        
+        if(!verificacaoCampos){
             Funcionario funcionario = new Funcionario();
             funcionario.setCpf(cpf.getText());
             funcionario.setNome(nome.getText());
@@ -68,7 +68,7 @@ public class FXMLCadastroFuncionario implements Initializable {
             c  = enderecoDAO.inserir(endereco.getEstado(),endereco.getCidade(),
                 endereco.getRua(),endereco.getNumero(),endereco.getBairro(),endereco.getCep(),id.getText());
         }
-        if(!verificacaoCampos){
+         if(verificacaoCampos){
             Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
             dialogoInfo.setTitle("Cadastro de funcionário");
             dialogoInfo.setHeaderText("Campo em falta!");
