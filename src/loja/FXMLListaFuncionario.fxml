@@ -16,8 +16,10 @@
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                            <children>
-                              <Button layoutX="84.0" layoutY="409.0" mnemonicParsing="false" onAction="#alterar" text="Alterar" />
+                              <Button layoutX="38.0" layoutY="409.0" mnemonicParsing="false" onAction="#alterar" text="Alterar" />
                               <TableView fx:id="tabela" layoutX="38.0" layoutY="44.0" prefHeight="276.0" prefWidth="315.0" />
+                              <Button layoutX="309.0" layoutY="409.0" mnemonicParsing="false" onAction="#cadastrar" text="Cadastrar" />
+                              <Button layoutX="188.0" layoutY="409.0" mnemonicParsing="false" onAction="#deletar" text="Deletar" />
                            </children>
                         </AnchorPane>
                     </items>

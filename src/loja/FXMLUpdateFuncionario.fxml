@@ -38,9 +38,6 @@
                               <TextField fx:id="bairro" layoutX="262.0" layoutY="344.0" />
                               <TextField fx:id="cep" layoutX="262.0" layoutY="385.0" />
                               <Button layoutX="336.0" layoutY="425.0" mnemonicParsing="false" onAction="#alterar" text="Atualizar" />
-                              <Button layoutX="16.0" layoutY="425.0" mnemonicParsing="false" onAction="#deletar" text="Deletar" />
-                              <TextField fx:id="id" layoutX="336.0" layoutY="50.0" prefHeight="25.0" prefWidth="44.0" />
-                              <Label layoutX="314.0" layoutY="54.0" text="ID" />
                            </children>
                         </AnchorPane>
                     </items>

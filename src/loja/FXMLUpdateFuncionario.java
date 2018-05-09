@@ -16,6 +16,13 @@ public class FXMLUpdateFuncionario implements Initializable {
       private static String salarioDado;
       private static String cargoDado;
       private static String id;
+      private static String estadoDado;
+      private static String cidadeDado;
+      private static String ruaDado;
+      private static String numeroDado;
+      private static String bairroDado;
+      private static String cepDado;
+      
       
       public static void setNome(String nome) {
         nomeDado = nome;
@@ -28,10 +35,33 @@ public class FXMLUpdateFuncionario implements Initializable {
       public static void setCargo(String cargo) {
         cargoDado = cargo;
       }
-      public static void setId(String id) {
-        id = id;
+      public static void setId(String prontuario) {
+        id = prontuario;
       }
-   
+      
+     public static void setEstado(String estado) {
+          estadoDado = estado;
+      }
+     
+    public static void setCidade(String cidade) {
+        cidadeDado = cidade;
+    }
+    
+    public static void setRua(String rua) {
+        ruaDado = rua;
+    }
+    
+    public static void setNumero(String numero) {
+        numeroDado = numero;
+    }
+    public static void setBairro(String bairro) {
+        bairroDado = bairro;
+    }
+
+    public static void setCep(String cep) {
+        cepDado = cep;
+    }
+      
     //Dados Funcionario
     @FXML  private TextField nome;
     @FXML  private TextField salario;
@@ -91,10 +121,7 @@ public class FXMLUpdateFuncionario implements Initializable {
     
  
     
-    public void deletar(ActionEvent event){
-          FuncionarioDAO funcionario = new FuncionarioDAO();
-          boolean c = funcionario.deletar(id);
-    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -103,6 +130,12 @@ public class FXMLUpdateFuncionario implements Initializable {
         nome.setText(nomeDado);
         salario.setText(salarioDado);
         cargo.setText(cargoDado);
+        estado.setText(estadoDado);
+        cidade.setText(cidadeDado);
+        rua.setText(ruaDado);
+        numero.setText(numeroDado);
+        bairro.setText(bairroDado);
+        cep.setText(cepDado);
         
         /* mostrar dados nos campos      
             FuncionarioDAO funcionario = new FuncionarioDAO();
