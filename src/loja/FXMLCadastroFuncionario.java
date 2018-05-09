@@ -54,8 +54,8 @@ public class FXMLCadastroFuncionario implements Initializable {
             funcionario.setCpf(cpf.getText());
             funcionario.setNome(nome.getText());
             funcionario.setDatanasc(datanasc.getText());
-            funcionario.setSalario(Double.parseDouble(salario.getText()));
-            funcionario.setCargo(Integer.parseInt(cargo.getText()));
+            funcionario.setSalario((salario.getText()));
+            funcionario.setCargo((cargo.getText()));
 
     
             Endereco endereco = new Endereco(estado.getText(),cidade.getText(),rua.getText(),

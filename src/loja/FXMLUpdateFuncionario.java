@@ -12,13 +12,31 @@ import loja.dao.FuncionarioDAO;
 
 
 public class FXMLUpdateFuncionario implements Initializable {
-    
+      private static String nomeDado;
+      private static String salarioDado;
+      private static String cargoDado;
+      private static String id;
+      
+      public static void setNome(String nome) {
+        nomeDado = nome;
+      }
+      
+      public static void setSalario(String salario) {
+        salarioDado = salario;
+      }
+      
+      public static void setCargo(String cargo) {
+        cargoDado = cargo;
+      }
+      public static void setId(String id) {
+        id = id;
+      }
    
     //Dados Funcionario
-    @FXML private TextField nome;
-    @FXML private TextField salario;
-    @FXML private TextField cargo;
-    @FXML private TextField id;
+    @FXML  private TextField nome;
+    @FXML  private TextField salario;
+    @FXML  private TextField cargo;
+ 
     
     //Dados endereco
     
@@ -35,11 +53,11 @@ public class FXMLUpdateFuncionario implements Initializable {
     public void alterar(ActionEvent event){
         
         FuncionarioDAO funcionario = new FuncionarioDAO();
-        boolean b = funcionario.atualizarFuncionario(nome.getText(),salario.getText(),cargo.getText(),id.getText());
+        boolean b = funcionario.atualizarFuncionario(nome.getText(),salario.getText(),cargo.getText(),id);
 
         EnderecoFuncDAO enderecoDAO = new EnderecoFuncDAO();
         
-        boolean c  = enderecoDAO.atualizarEndereco(id.getText(),estado.getText(),cidade.getText(),
+        boolean c  = enderecoDAO.atualizarEndereco(id,estado.getText(),cidade.getText(),
             rua.getText(),numero.getText(),bairro.getText(),cep.getText());
         
         boolean verificarCampos = (nome.getText().equals("")  && salario.getText().equals("") &&
@@ -70,17 +88,23 @@ public class FXMLUpdateFuncionario implements Initializable {
              
 
     }
-        
     
+ 
     
     public void deletar(ActionEvent event){
           FuncionarioDAO funcionario = new FuncionarioDAO();
-          boolean c = funcionario.deletar(id.getText());
+          boolean c = funcionario.deletar(id);
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-         /* mostrar dados nos campos      
+       
+ 
+        nome.setText(nomeDado);
+        salario.setText(salarioDado);
+        cargo.setText(cargoDado);
+        
+        /* mostrar dados nos campos      
             FuncionarioDAO funcionario = new FuncionarioDAO();
             
             

@@ -6,8 +6,8 @@ public class Funcionario {
     String cpf;
     String nome;
     String datanasc;
-    double salario;
-    int cargo;
+    String salario;
+    String cargo;
     Departamento departamento;
 
     public String getProntuario() {
@@ -43,19 +43,19 @@ public class Funcionario {
     }
 
 
-    public double getSalario() {
+    public String getSalario() {
         return salario;
     }
 
-    public void setSalario(double salario) {
+    public void setSalario(String salario) {
         this.salario = salario;
     }
 
-    public int getCargo() {
+    public String getCargo() {
         return cargo;
     }
 
-    public void setCargo(int cargo) {
+    public void setCargo(String cargo) {
         this.cargo = cargo;
     }
 

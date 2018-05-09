@@ -44,7 +44,7 @@ public class FuncionarioDAO {
             b = false;
         return b;
     }
-    public boolean inserir(String cpf,String nome, String datanasc,double salario,int cargo,String id){
+    public boolean inserir(String cpf,String nome, String datanasc,String salario,String cargo,String id){
         
         //Criar a sql com variáveis
         String sql ="insert into funcionario(cpf,nome,dt_nasc,salario,cargo,prontuario) values('" + cpf + "','"+ nome + "','" + datanasc + 
@@ -133,7 +133,7 @@ public class FuncionarioDAO {
                   funcionario.setProntuario(rs.getString("prontuario"));
                   funcionario.setNome(rs.getString("nome"));
                   funcionario.setCpf(rs.getString("cpf"));
-                  funcionario.setSalario(rs.getDouble("salario"));
+                  funcionario.setSalario(rs.getString("salario"));
 
 
                   lista.add(funcionario);
