@@ -39,6 +39,19 @@ public class FXMLUpdateCliente implements Initializable {
     @FXML private TextField bairro;
     @FXML private TextField cep;
     
+    
+    //Updates
+    public static void setId(String id) {
+        id = id;
+      }
+    public static void setNome(String nome) {
+        nome = nome;
+      }
+    public static void setTelefone(String telefone) {
+        telefone = telefone;
+      }
+    
+    
     //Function botão
     
     
