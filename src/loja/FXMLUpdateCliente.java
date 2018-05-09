@@ -1,10 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package loja;
 
+package loja;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -17,10 +12,6 @@ import loja.bean.Endereco;
 import loja.dao.ClienteDAO;
 import loja.dao.EnderecoDAO;
 
-/**
- *
- * @author a170060x
- */
 public class FXMLUpdateCliente implements Initializable {
     
    
@@ -29,6 +20,7 @@ public class FXMLUpdateCliente implements Initializable {
     @FXML private TextField nome;
     @FXML private TextField telefone;
     @FXML private TextField id;
+    
     
     //Dados endereco
     
@@ -39,23 +31,30 @@ public class FXMLUpdateCliente implements Initializable {
     @FXML private TextField bairro;
     @FXML private TextField cep;
     
+      // Update
     
-    //Updates
+      private static String nomeDado;
+      private static String telefoneDado;
+      private static String idDado;
+      
     public static void setId(String id) {
-        id = id;
-      }
+        idDado = id;
+    }  
     public static void setNome(String nome) {
-        nome = nome;
+        nomeDado = nome;
       }
     public static void setTelefone(String telefone) {
-        telefone = telefone;
+        telefoneDado = telefone;
       }
     
     
+    
+    
+    
+
     //Function botão
-    
-    
     public void atualizarCliente(ActionEvent event){
+       
         //Atualizar cliente
     Cliente cliente = new Cliente();
     cliente.setNome(nome.getText());
@@ -86,9 +85,14 @@ public class FXMLUpdateCliente implements Initializable {
             System.out.println("Erro na exclusão do cliente");
         
     }
-    @Override
+    
+     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+    nome.setText(nomeDado);
+    telefone.setText(telefoneDado);
+    id.setText(idDado);
+    
+    } 
+      
     
 }

@@ -1,6 +1,10 @@
 package loja.dao;
 
 import conexao.Conexao;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import loja.bean.Endereco;
 
 public class EnderecoFuncDAO {
     
@@ -10,7 +14,30 @@ public class EnderecoFuncDAO {
         conexao=new Conexao();
         conexao.configurar();
     }
-       
+    
+    public  ArrayList<Endereco> pesquisa(String id) throws SQLException{
+
+      String sql = "SELECT * FROM endereco_funcionario WHERE id_funcionario = " + id; 
+      ArrayList<Endereco> lista = new ArrayList<>();
+      conexao.conectar();
+
+          try (ResultSet rs = conexao.pegarResultadoSQL(sql)) {
+                            
+              while(rs.next()){
+                  Endereco endereco = new Endereco(rs.getString("estado"),rs.getString("cidade"),rs.getString("rua"),rs.getString("numero"),
+                  rs.getString("bairro"),rs.getString("cep"));
+
+
+
+                  lista.add(endereco);
+
+              }
+              rs.close();  
+          }
+        System.out.println(lista.get(0));
+      return lista;
+  }
+    
        public boolean atualizarEstado(String estado,String id){
         String sql = "Update endereco_funcionario set estado = '"+estado+"' where id_funcionario = "+id;
 

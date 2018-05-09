@@ -19,7 +19,7 @@ public class Loja extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("FXMLListaFuncionario.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLListaCliente.fxml"));
         
         Scene scene = new Scene(root);
         

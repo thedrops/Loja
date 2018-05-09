@@ -35,6 +35,7 @@ public class FXMLListaCliente implements Initializable {
        
          dados =  (Cliente) tabela.getSelectionModel().getSelectedItem();
          
+         FXMLUpdateCliente.setId(dados.getId());
          FXMLUpdateCliente.setNome(dados.getNome());
          FXMLUpdateCliente.setTelefone(dados.getTelefone());
             
@@ -43,8 +44,7 @@ public class FXMLListaCliente implements Initializable {
             Scene scene = new Scene(root, 600, 600);
             stage.setScene(scene);
             stage.show();
-
-           System.out.println(dados.getNome());
+           
            
  
 

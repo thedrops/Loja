@@ -2,6 +2,9 @@ package loja.dao;
 
 import conexao.Conexao;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import loja.bean.Endereco;
 
 public class EnderecoDAO {
     
@@ -55,6 +58,29 @@ public class EnderecoDAO {
         //retornar erro ou Ok
         return b;
     }
+    
+    public  ArrayList<Endereco> pesquisa(String id) throws SQLException{
+
+      String sql = "SELECT * FROM endereco_funcionario WHERE id_funcionario = " + id; 
+      ArrayList<Endereco> lista = new ArrayList<>();
+      conexao.conectar();
+
+          try (ResultSet rs = conexao.pegarResultadoSQL(sql)) {
+                            
+              while(rs.next()){
+                  Endereco endereco = new Endereco(rs.getString("estado"),rs.getString("cidade"),rs.getString("rua"),rs.getString("numero"),
+                  rs.getString("bairro"),rs.getString("cep"));
+
+
+
+                  lista.add(endereco);
+
+              }
+              rs.close();  
+          }
+        System.out.println(lista.get(0));
+      return lista;
+  }
     
     
     
