@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import loja.bean.Cliente;
+import loja.bean.Funcionario;
 
 public class ClienteDAO {
     
@@ -74,40 +75,34 @@ public class ClienteDAO {
         return b;
     }
     
-    public ArrayList<Cliente> pesquisa(){
+    public  ArrayList<Cliente> pesquisa() throws SQLException{
 
-    
-    String sql = "SELECT * FROM cliente"; 
-    ArrayList<Cliente> lista = new ArrayList<>();
-    conexao.conectar();
 
-    try{
-        
+      String sql = "SELECT * FROM cliente"; 
+      ArrayList<Cliente> lista = new ArrayList<>();
+      conexao.conectar();
 
-        ResultSet rs = conexao.pegarResultadoSQL(sql);
 
-        
 
-        while(rs.next()){
-            Cliente cliente = new Cliente(); 
-            
-            cliente.setId(rs.getString("id"));
-            cliente.setNome(rs.getString("nome"));
-            cliente.setCpf(rs.getString("cpf"));
-            cliente.setTelefone(rs.getString("telefone"));
+          try (ResultSet rs = conexao.pegarResultadoSQL(sql)) {        
+              while(rs.next()){
+                  Cliente cliente = new Cliente();
 
-            
-            lista.add(cliente);
+                  cliente.setId(rs.getString(1));
+                  cliente.setNome(rs.getString("nome"));
+                  cliente.setCpf(rs.getString("cpf"));
+                  cliente.setTelefone(rs.getString("telefone"));
 
-        }
-        rs.close();
 
-    }catch(SQLException s){
-        s.getStackTrace();
-    }
-    return lista;
-}
-    
+                  lista.add(cliente);
+
+              }
+              rs.close();  
+          }
+
+      return lista;
+  }
+
     
     
     
