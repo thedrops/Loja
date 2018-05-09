@@ -80,8 +80,18 @@ public class FXMLUpdateFuncionario implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
+         /* mostrar dados nos campos      
+            FuncionarioDAO funcionario = new FuncionarioDAO();
+            
+            
+            
+        try {
+            nome.setText(funcionario.pesquisa().get(0).getNome());
+        } catch (SQLException ex) {
+            Logger.getLogger(FXMLUpdateFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        */
+    }  
     
 }
 

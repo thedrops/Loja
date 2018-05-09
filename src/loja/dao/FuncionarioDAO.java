@@ -1,6 +1,10 @@
 package loja.dao;
 
 import conexao.Conexao;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import loja.bean.Funcionario;
 
 public class FuncionarioDAO {
         
@@ -111,6 +115,34 @@ public class FuncionarioDAO {
         //retornar erro ou Ok
         return b;
     }
+    
+        public  ArrayList<Funcionario> pesquisa() throws SQLException{
 
+
+      String sql = "SELECT * FROM funcionario"; 
+      ArrayList<Funcionario> lista = new ArrayList<>();
+      conexao.conectar();
+
+
+
+          try (ResultSet rs = conexao.pegarResultadoSQL(sql)) {
+                            
+              while(rs.next()){
+                  Funcionario funcionario = new Funcionario();
+
+                  funcionario.setProntuario(rs.getString("prontuario"));
+                  funcionario.setNome(rs.getString("nome"));
+                  funcionario.setCpf(rs.getString("cpf"));
+                  funcionario.setSalario(rs.getDouble("salario"));
+
+
+                  lista.add(funcionario);
+
+              }
+              rs.close();  
+          }
+
+      return lista;
+  }
 
 }

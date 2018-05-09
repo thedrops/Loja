@@ -1,11 +1,8 @@
 
 package loja.bean;
 
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.date;
-import java.util.Date;
-
 public class Funcionario {
-    int prontuario;
+    String prontuario;
     String cpf;
     String nome;
     String datanasc;
@@ -13,11 +10,11 @@ public class Funcionario {
     int cargo;
     Departamento departamento;
 
-    public int getProntuario() {
+    public String getProntuario() {
         return prontuario;
     }
 
-    public void setProntuario(int prontuario) {
+    public void setProntuario(String prontuario) {
         this.prontuario = prontuario;
     }
 
