@@ -50,10 +50,18 @@ public class FXMLCadastroFuncionario implements Initializable {
                 rua.getText().equals("") || bairro.getText().equals("") || cep.getText().equals(""));
         
         if(!verificacaoCampos){
+            //formatação da data 
+            
+            String dia = datanasc.getText().substring(0,2);
+            String mes = datanasc.getText().substring(3,5);
+            String ano = datanasc.getText().substring(6,10);
+            String data = ano + "/" + mes +"/" + dia;
+            
+            //insere dados 
             Funcionario funcionario = new Funcionario();
             funcionario.setCpf(cpf.getText());
             funcionario.setNome(nome.getText());
-            funcionario.setDatanasc(datanasc.getText());
+            funcionario.setDatanasc(data);
             funcionario.setSalario((salario.getText()));
             funcionario.setCargo(cargo.getText());
 

@@ -25,7 +25,6 @@
                               <Label layoutX="75.0" layoutY="168.0" text="Salario" />
                               <Label layoutX="78.0" layoutY="210.0" text="Cargo" />
                               <TextField fx:id="nome" layoutX="147.0" layoutY="87.0" />
-                              <TextField fx:id="datanasc" layoutX="147.0" layoutY="126.0" />
                               <TextField fx:id="salario" layoutX="147.0" layoutY="164.0" />
                               <TextField fx:id="cargo" layoutX="148.0" layoutY="206.0" />
                               <Label layoutX="184.0" layoutY="265.0" text="Endereço" />
@@ -45,6 +44,7 @@
                               <Button layoutX="16.0" layoutY="425.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
                               <TextField fx:id="id" layoutX="336.0" layoutY="50.0" prefHeight="25.0" prefWidth="44.0" />
                               <Label layoutX="314.0" layoutY="54.0" text="ID" />
+                              <TextField fx:id="datanasc" layoutX="147.0" layoutY="126.0" />
                            </children>
                         </AnchorPane>
                     </items>
