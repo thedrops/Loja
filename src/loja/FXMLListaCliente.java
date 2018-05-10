@@ -19,7 +19,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import loja.bean.Cliente;
+import loja.bean.Funcionario;
 import loja.dao.ClienteDAO;
+import loja.dao.FuncionarioDAO;
 
 public class FXMLListaCliente implements Initializable {
     @FXML TableView tabela = new TableView<>(); 
@@ -27,7 +29,7 @@ public class FXMLListaCliente implements Initializable {
         TableColumn colunaNome = new TableColumn<>("Nome");        
         TableColumn colunaCPF = new TableColumn<>("CPF");
         TableColumn colunaTelefone = new TableColumn<>("Telefone");
-       Cliente dados;
+        Cliente dados;
       
      
       
@@ -38,19 +40,31 @@ public class FXMLListaCliente implements Initializable {
          FXMLUpdateCliente.setId(dados.getId());
          FXMLUpdateCliente.setNome(dados.getNome());
          FXMLUpdateCliente.setTelefone(dados.getTelefone());
-            
+     
          Parent root = FXMLLoader.load(getClass().getResource("FXMLUpdateCliente.fxml"));
+         Stage stage = new Stage();
+         Scene scene = new Scene(root, 600, 600);
+         stage.setScene(scene);
+         stage.show();
+         
+     }
+    
+      public void cadastrar(ActionEvent event) throws IOException{
+           Parent root = FXMLLoader.load(getClass().getResource("FXMLCadastroCliente.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(root, 600, 600);
             stage.setScene(scene);
             stage.show();
-           
-           
- 
-
-          
      }
+     
+    public void deletar(ActionEvent event){
+          ClienteDAO cliente = new ClienteDAO();
+          dados =  (Cliente) tabela.getSelectionModel().getSelectedItem();
+          boolean c = cliente.deletar(dados.getId());
+    }
     
+     
+     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         ClienteDAO cliente = new ClienteDAO();

@@ -31,10 +31,23 @@ public class ClienteDAO {
         return b;
     }
     
-    public boolean atualizarCliente(String id, String nome,String telefone){
-        //criar sql com variáveis
-        String sql = "Update cliente set nome = '"+nome+"', telefone = '"+telefone+"' where id = "+id;
+    public boolean atualizarCliente(String nome,String telefone,String id){
+        boolean b = true;
         
+        if(b){
+            if(!nome.equals(""))
+                b &= atualizarNome(id,nome);
+            if(!telefone.equals(""))
+                b &= atualizarTelefone(id,telefone);
+        }
+        else
+            b = false;
+        return b;
+    }
+    
+    public boolean atualizarNome(String id,String nome){
+        //criar sql com variáveis
+        String sql = "Update cliente set nome = '"+nome+"' where prontuario = "+id;
 
         //conectar com banco de dados
         conexao.conectar();
@@ -46,10 +59,10 @@ public class ClienteDAO {
         return b;
     }
     
-    public boolean atualizarCpf(int id, String cpf){
+    public boolean atualizarTelefone(String id,String telefone){
         //criar sql com variáveis
-        String sql = "Update cliente set cpf = '"+cpf+"' where id = "+id;
-        
+        String sql = "Update cliente set telefone = '"+telefone+"' where prontuario = "+id;
+
         //conectar com banco de dados
         conexao.conectar();
         
@@ -59,7 +72,7 @@ public class ClienteDAO {
         //retornar erro ou Ok
         return b;
     }
-    
+ 
     public boolean deletar(String id){
         
         //criar sql com variáveis

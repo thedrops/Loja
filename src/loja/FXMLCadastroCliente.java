@@ -10,12 +10,16 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import loja.bean.Cliente;
 import loja.bean.Endereco;
+import loja.bean.Funcionario;
 import loja.dao.ClienteDAO;
 import loja.dao.EnderecoDAO;
+import loja.dao.EnderecoFuncDAO;
+import loja.dao.FuncionarioDAO;
 
 /**
  *
@@ -45,27 +49,56 @@ public class FXMLCadastroCliente implements Initializable {
     
     public void cadastrarCliente(ActionEvent event){
         //Cadastrar cliente
-    Cliente cliente = new Cliente();
-    cliente.setNome(nome.getText());
-    cliente.setTelefone(telefone.getText());
-    cliente.setCpf(cpf.getText());
-    ClienteDAO dao = new ClienteDAO(); 
-    boolean b = dao.inserir(cliente.getNome(),cliente.getCpf(),cliente.getTelefone());
-    if(!b){System.out.println("Erro criação de cliente");}
+        boolean b = false;
+        boolean c = false;
+        
+        boolean verificacaoCampos = (cpf.getText().equals("") || nome.getText().equals("") ||
+                numero.getText().equals("") || estado.getText().equals("") || cidade.getText().equals("") ||
+                rua.getText().equals("") || bairro.getText().equals("") || cep.getText().equals(""));
+        
+        
+    if(!verificacaoCampos){
+            Cliente cliente = new Cliente();
+            cliente.setCpf(cpf.getText());
+            cliente.setNome(nome.getText());
+            cliente.setTelefone(telefone.getText());
+            cliente.setId(id.getText());
 
-        
-        //cadastrar Endereço
-    Endereco endereco = new Endereco(estado.getText(),cidade.getText(),rua.getText(),
-    numero.getText(),bairro.getText(),cep.getText());
-    EnderecoDAO enderecoDAO = new EnderecoDAO();
     
-    boolean c  = enderecoDAO.inserir(endereco.getEstado(),endereco.getCidade(),
-            endereco.getRua(),endereco.getNumero(),endereco.getBairro(),endereco.getCep(),id.getText());
-    if(!c)System.out.println("Erro criação endereço");
-    
-    if(b && c )
-        System.out.println("Cliente Cadastrado com Sucesso!");
+            Endereco endereco = new Endereco(estado.getText(),cidade.getText(),rua.getText(),
+            numero.getText(),bairro.getText(),cep.getText());
+          
+            EnderecoDAO enderecoDAO = new EnderecoDAO();
+            ClienteDAO dao = new ClienteDAO(); 
+            
+            b = dao.inserir(cliente.getNome(),cliente.getCpf(),cliente.getTelefone());
+            c  = enderecoDAO.inserir(endereco.getEstado(),endereco.getCidade(),
+                endereco.getRua(),endereco.getNumero(),endereco.getBairro(),endereco.getCep(),id.getText());
+        }
         
+        if(verificacaoCampos){
+            Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
+            dialogoInfo.setTitle("Cadastro de cliente");
+            dialogoInfo.setHeaderText("Campo em falta!");
+            dialogoInfo.setContentText("");
+            dialogoInfo.showAndWait();
+        }
+       else if(b && c){
+            Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
+            dialogoInfo.setTitle("Cadastro de Cliente");
+            dialogoInfo.setHeaderText("Cliente cadastrado com sucesso!");
+            dialogoInfo.setContentText("");
+            dialogoInfo.showAndWait();
+        }
+        else{
+            Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
+            dialogoInfo.setTitle("Cadastro de Cliente");
+            dialogoInfo.setHeaderText("Erro ao cadastrar Cliente!");
+            dialogoInfo.setContentText("");
+            dialogoInfo.showAndWait();
+        }
+    
+    
     }
     
     public void cancelar(ActionEvent event){

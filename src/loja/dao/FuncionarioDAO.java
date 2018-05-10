@@ -44,6 +44,7 @@ public class FuncionarioDAO {
             b = false;
         return b;
     }
+    
     public boolean inserir(String cpf,String nome, String datanasc,String salario,String cargo,String id){
         
         //Criar a sql com variáveis

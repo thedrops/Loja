@@ -44,6 +44,7 @@ public class FXMLListaFuncionario implements Initializable {
           dados =  (Funcionario) tabela.getSelectionModel().getSelectedItem();
           boolean c = funcionario.deletar(dados.getProntuario());
     }
+    
      public void alterar(ActionEvent event) throws IOException, SQLException{
        
          dados =  (Funcionario) tabela.getSelectionModel().getSelectedItem();

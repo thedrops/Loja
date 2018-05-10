@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import loja.bean.Cliente;
@@ -12,16 +13,13 @@ import loja.bean.Endereco;
 import loja.dao.ClienteDAO;
 import loja.dao.EnderecoDAO;
 
+
 public class FXMLUpdateCliente implements Initializable {
-    
-   
     //Dados Cliente
     
     @FXML private TextField nome;
     @FXML private TextField telefone;
-    @FXML private TextField id;
-    
-    
+      
     //Dados endereco
     
     @FXML private TextField estado;
@@ -35,10 +33,10 @@ public class FXMLUpdateCliente implements Initializable {
     
       private static String nomeDado;
       private static String telefoneDado;
-      private static String idDado;
+      private static String id;
       
-    public static void setId(String id) {
-        idDado = id;
+    public static void setId(String idDado) {
+        id = idDado;
     }  
     public static void setNome(String nome) {
         nomeDado = nome;
@@ -46,51 +44,53 @@ public class FXMLUpdateCliente implements Initializable {
     public static void setTelefone(String telefone) {
         telefoneDado = telefone;
       }
-    
-    
-    
-    
-    
 
+ 
     //Function botão
-    public void atualizarCliente(ActionEvent event){
-       
-        //Atualizar cliente
-    Cliente cliente = new Cliente();
-    cliente.setNome(nome.getText());
-    cliente.setTelefone(telefone.getText());
-    ClienteDAO dao = new ClienteDAO(); 
-    boolean b = dao.atualizarCliente(id.getText(),cliente.getNome(),cliente.getTelefone());
-    if(!b){System.out.println("Erro na atualização do cliente");}
+    public void alterar(ActionEvent event){
         
-        //Atualizar Endereço
-    Endereco endereco = new Endereco(estado.getText(),cidade.getText(),rua.getText(),
-    numero.getText(),bairro.getText(),cep.getText());
-    EnderecoDAO enderecoDAO = new EnderecoDAO();
-    
-    boolean c  = enderecoDAO.atualizarEndereco(id.getText(),endereco.getEstado(),endereco.getCidade(),
-            endereco.getRua(),endereco.getNumero(),endereco.getBairro(),endereco.getCep());
-    if(!c)System.out.println("Erro na atualização do endereco");
+        ClienteDAO cliente = new ClienteDAO();
+        boolean b = cliente.atualizarCliente(nome.getText(),telefone.getText(),id);
+
+        EnderecoDAO enderecoDAO = new EnderecoDAO();
         
-    if(b && c )System.out.println("Cliente atualizado com Sucesso!");
+        boolean c  = enderecoDAO.atualizarEndereco(id,estado.getText(),cidade.getText(),
+            rua.getText(),numero.getText(),bairro.getText(),cep.getText());
+        
+        boolean verificarCampos = (nome.getText().equals("")  && telefone.getText().equals("")
+                && numero.getText().equals("") && estado.getText().equals("") && cidade.getText().equals("") &&
+                rua.getText().equals("") && bairro.getText().equals("") && cep.getText().equals(""));
+        
+        if(verificarCampos){
+            Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
+            dialogoInfo.setTitle("Atualização de cliente");
+            dialogoInfo.setHeaderText("Nenhuma alteração para realizar!");
+            dialogoInfo.setContentText("");
+            dialogoInfo.showAndWait();
+        }
+        else if(b && c){
+            Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
+            dialogoInfo.setTitle("Atualização de cliente");
+            dialogoInfo.setHeaderText("Úsuario atualizado com sucesso!");
+            dialogoInfo.setContentText("");
+            dialogoInfo.showAndWait();
+        }
+        else{
+            Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
+            dialogoInfo.setTitle("Cadastro de Cliente");
+            dialogoInfo.setHeaderText("Erro ao atualizar cliente!");
+            dialogoInfo.setContentText("");
+            dialogoInfo.showAndWait();
+         }
+             
+
     }
-    
-    public void deletarCliente(ActionEvent event){
-    
-    ClienteDAO cliente = new ClienteDAO();
-    boolean d = cliente.deletar(id.getText());
-    if(d)
-            System.out.println("Cliente Deletado com sucesso!");
-    else
-            System.out.println("Erro na exclusão do cliente");
-        
-    }
-    
+
      @Override
     public void initialize(URL url, ResourceBundle rb) {
-    nome.setText(nomeDado);
-    telefone.setText(telefoneDado);
-    id.setText(idDado);
+        
+        nome.setText(nomeDado);
+        telefone.setText(telefoneDado);
     
     } 
       
