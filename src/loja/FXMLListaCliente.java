@@ -21,6 +21,8 @@ import javafx.stage.Stage;
 import loja.bean.Cliente;
 import loja.bean.Funcionario;
 import loja.dao.ClienteDAO;
+import loja.dao.EnderecoDAO;
+import loja.dao.EnderecoFuncDAO;
 import loja.dao.FuncionarioDAO;
 
 public class FXMLListaCliente implements Initializable {
@@ -33,13 +35,21 @@ public class FXMLListaCliente implements Initializable {
       
      
       
-     public void alterar(ActionEvent event) throws IOException{
-       
+     public void alterar(ActionEvent event) throws IOException, SQLException{
          dados =  (Cliente) tabela.getSelectionModel().getSelectedItem();
-         
          FXMLUpdateCliente.setId(dados.getId());
          FXMLUpdateCliente.setNome(dados.getNome());
          FXMLUpdateCliente.setTelefone(dados.getTelefone());
+         
+         
+         EnderecoDAO endereco = new EnderecoDAO();
+         FXMLUpdateFuncionario.setEstado(endereco.pesquisa(dados.getId()).get(0).getEstado());
+         FXMLUpdateFuncionario.setCidade(endereco.pesquisa(dados.getId()).get(0).getCidade());
+         FXMLUpdateFuncionario.setRua(endereco.pesquisa(dados.getId()).get(0).getRua());
+         FXMLUpdateFuncionario.setBairro(endereco.pesquisa(dados.getId()).get(0).getBairro());
+         FXMLUpdateFuncionario.setNumero(endereco.pesquisa(dados.getId()).get(0).getNumero());
+         FXMLUpdateFuncionario.setCep(endereco.pesquisa(dados.getId()).get(0).getCep());
+         
      
          Parent root = FXMLLoader.load(getClass().getResource("FXMLUpdateCliente.fxml"));
          Stage stage = new Stage();
