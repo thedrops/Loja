@@ -44,7 +44,6 @@ public class FuncionarioDAO {
             b = false;
         return b;
     }
-    
     public boolean inserir(String cpf,String nome, String datanasc,String salario,String cargo,String id){
         
         //Criar a sql com variáveis
@@ -117,14 +116,11 @@ public class FuncionarioDAO {
         return b;
     }
     
-        public  ArrayList<Funcionario> pesquisa() throws SQLException{
-
+    public  ArrayList<Funcionario> pesquisa() throws SQLException{
 
       String sql = "SELECT * FROM funcionario"; 
       ArrayList<Funcionario> lista = new ArrayList<>();
       conexao.conectar();
-
-
 
           try (ResultSet rs = conexao.pegarResultadoSQL(sql)) {
                             
@@ -135,6 +131,7 @@ public class FuncionarioDAO {
                   funcionario.setNome(rs.getString("nome"));
                   funcionario.setCpf(rs.getString("cpf"));
                   funcionario.setSalario(rs.getString("salario"));
+                  funcionario.setCargo(rs.getString("cargo"));
 
 
                   lista.add(funcionario);

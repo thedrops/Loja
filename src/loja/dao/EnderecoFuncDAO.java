@@ -37,7 +37,6 @@ public class EnderecoFuncDAO {
         System.out.println(lista.get(0));
       return lista;
   }
-    
        public boolean atualizarEstado(String estado,String id){
         String sql = "Update endereco_funcionario set estado = '"+estado+"' where id_funcionario = "+id;
 
