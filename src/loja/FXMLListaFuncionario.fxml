@@ -19,7 +19,7 @@
                               <Button layoutX="38.0" layoutY="409.0" mnemonicParsing="false" onAction="#alterar" text="Alterar" />
                               <TableView fx:id="tabela" layoutX="38.0" layoutY="44.0" prefHeight="276.0" prefWidth="315.0" />
                               <Button layoutX="309.0" layoutY="409.0" mnemonicParsing="false" onAction="#cadastrar" text="Cadastrar" />
-                              <Button layoutX="188.0" layoutY="409.0" mnemonicParsing="false" onAction="#deletar" text="Deletar" />
+                              <Button layoutX="174.0" layoutY="409.0" mnemonicParsing="false" onAction="#deletar" prefHeight="25.0" prefWidth="67.0" text="Deletar" />
                            </children>
                         </AnchorPane>
                     </items>

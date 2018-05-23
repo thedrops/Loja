@@ -2,11 +2,14 @@ package loja;
 
 
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import loja.bean.Endereco;
 import loja.bean.Funcionario;
@@ -23,9 +26,9 @@ public class FXMLCadastroFuncionario implements Initializable {
     //Dados Funcionario
     @FXML private TextField cpf;
     @FXML private TextField nome;
-    @FXML private TextField datanasc;
+    @FXML private DatePicker datanasc;
     @FXML private TextField salario;
-    @FXML private TextField cargo;
+    @FXML private  ChoiceBox cargo;
     @FXML private TextField id;
     
     //Dados endereco
@@ -46,26 +49,23 @@ public class FXMLCadastroFuncionario implements Initializable {
         boolean c = false;
         
         boolean verificacaoCampos = (cpf.getText().equals("") || nome.getText().equals("") || datanasc == null || salario.getText().equals("") ||
-                cargo.getText().equals("") || numero.getText().equals("") || estado.getText().equals("") || cidade.getText().equals("") ||
+                cargo.getValue().equals("") || numero.getText().equals("") || estado.getText().equals("") || cidade.getText().equals("") ||
                 rua.getText().equals("") || bairro.getText().equals("") || cep.getText().equals(""));
         
         if(!verificacaoCampos){
-            //formatação da data 
-            
-            String dia = datanasc.getText().substring(0,2);
-            String mes = datanasc.getText().substring(3,5);
-            String ano = datanasc.getText().substring(6,10);
-            String data = ano + "/" + mes +"/" + dia;
+            //formatação da data e salario
+            String data = datanasc.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             
             //insere dados 
             Funcionario funcionario = new Funcionario();
             funcionario.setCpf(cpf.getText());
             funcionario.setNome(nome.getText());
             funcionario.setDatanasc(data);
-            funcionario.setSalario((salario.getText()));
-            funcionario.setCargo(cargo.getText());
+            funcionario.setSalario((salario.getText().replaceAll(",", ".")));
+            funcionario.setCargo((String) cargo.getValue());
+            System.out.println(funcionario.getCargo());
 
-    
+            System.out.println((String)cargo.getValue());
             Endereco endereco = new Endereco(estado.getText(),cidade.getText(),rua.getText(),
             numero.getText(),bairro.getText(),cep.getText());
           
@@ -103,9 +103,9 @@ public class FXMLCadastroFuncionario implements Initializable {
     public void cancelar(ActionEvent event){
         nome.setText(null);
         cpf.setText(null);
-        datanasc.setText(null);
+        datanasc.setValue(null);
         salario.setText(null);
-        cargo.setText(null);
+        cargo.setValue(null);
         
         estado.setText(null);
         cidade.setText(null);
@@ -117,7 +117,12 @@ public class FXMLCadastroFuncionario implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+            cargo.getItems().addAll(
+                "Vendedor",
+                "Gerente",
+                "Atendente",
+                "Estoquista"
+            ); 
     }    
     
 }

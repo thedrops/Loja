@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import loja.dao.EnderecoFuncDAO;
 import loja.dao.FuncionarioDAO;
@@ -32,7 +33,7 @@ public class FXMLUpdateFuncionario implements Initializable {
         salarioDado = salario;
       }
       
-      public static void setCargo(String cargo) {
+     public static void setCargo(String cargo) {
         cargoDado = cargo;
       }
       public static void setId(String prontuario) {
@@ -65,7 +66,7 @@ public class FXMLUpdateFuncionario implements Initializable {
     //Dados Funcionario
     @FXML  private TextField nome;
     @FXML  private TextField salario;
-    @FXML  private TextField cargo;
+    @FXML  private ChoiceBox cargo;
  
     
     //Dados endereco
@@ -83,7 +84,7 @@ public class FXMLUpdateFuncionario implements Initializable {
     public void alterar(ActionEvent event){
         
         FuncionarioDAO funcionario = new FuncionarioDAO();
-        boolean b = funcionario.atualizarFuncionario(nome.getText(),salario.getText(),cargo.getText(),id);
+        boolean b = funcionario.atualizarFuncionario(nome.getText(),salario.getText().replaceAll(",","."),(String)cargo.getValue(),id);
 
         EnderecoFuncDAO enderecoDAO = new EnderecoFuncDAO();
         
@@ -91,7 +92,7 @@ public class FXMLUpdateFuncionario implements Initializable {
             rua.getText(),numero.getText(),bairro.getText(),cep.getText());
         
         boolean verificarCampos = (nome.getText().equals("")  && salario.getText().equals("") &&
-                cargo.getText().equals("") && numero.getText().equals("") && estado.getText().equals("") && cidade.getText().equals("") &&
+                cargo.getValue().equals("") && numero.getText().equals("") && estado.getText().equals("") && cidade.getText().equals("") &&
                 rua.getText().equals("") && bairro.getText().equals("") && cep.getText().equals(""));
         
         if(verificarCampos){
@@ -119,24 +120,26 @@ public class FXMLUpdateFuncionario implements Initializable {
 
     }
     
- 
-    
-
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+            cargo.getItems().addAll(
+                "Vendedor",
+                "Gerente",
+                "Atendente",
+                "Estoquista"
+            );
  
         nome.setText(nomeDado);
         salario.setText(salarioDado);
-        cargo.setText(cargoDado);
+        cargo.setValue(cargoDado);
         estado.setText(estadoDado);
         cidade.setText(cidadeDado);
         rua.setText(ruaDado);
         numero.setText(numeroDado);
         bairro.setText(bairroDado);
         cep.setText(cepDado);
-        
+       
         /* mostrar dados nos campos      
             FuncionarioDAO funcionario = new FuncionarioDAO();
             

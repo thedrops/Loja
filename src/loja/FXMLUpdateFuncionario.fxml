@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextField?>
@@ -23,7 +24,6 @@
                               <Label layoutX="79.0" layoutY="153.0" text="Cargo" />
                               <TextField fx:id="nome" layoutX="148.0" layoutY="50.0" />
                               <TextField fx:id="salario" layoutX="148.0" layoutY="95.0" />
-                              <TextField fx:id="cargo" layoutX="150.0" layoutY="149.0" />
                               <Label layoutX="184.0" layoutY="265.0" text="Endereço" />
                               <Label layoutX="3.0" layoutY="309.0" text="Estado" />
                               <Label layoutX="2.0" layoutY="348.0" text="Cidade" />
@@ -38,6 +38,7 @@
                               <TextField fx:id="bairro" layoutX="262.0" layoutY="344.0" />
                               <TextField fx:id="cep" layoutX="262.0" layoutY="385.0" />
                               <Button layoutX="336.0" layoutY="425.0" mnemonicParsing="false" onAction="#alterar" text="Atualizar" />
+                              <ChoiceBox fx:id="cargo" layoutX="148.0" layoutY="149.0" prefWidth="150.0" />
                            </children>
                         </AnchorPane>
                     </items>
