@@ -78,7 +78,6 @@ public class EnderecoDAO {
               }
               rs.close();  
           }
-        System.out.println(lista.get(0));
       return lista;
   }
     

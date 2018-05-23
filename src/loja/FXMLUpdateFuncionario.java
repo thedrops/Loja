@@ -80,7 +80,7 @@ public class FXMLUpdateFuncionario implements Initializable {
     
     //Function botão
     
-    
+  
     public void alterar(ActionEvent event){
         
         FuncionarioDAO funcionario = new FuncionarioDAO();
@@ -117,7 +117,7 @@ public class FXMLUpdateFuncionario implements Initializable {
             dialogoInfo.showAndWait();
          }
              
-
+     
     }
     
 
