@@ -34,7 +34,7 @@ public class EnderecoFuncDAO {
               }
               rs.close();  
           }
-        System.out.println(lista.get(0));
+        
       return lista;
   }
        public boolean atualizarEstado(String estado,String id){
