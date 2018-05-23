@@ -19,11 +19,9 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import loja.bean.Cliente;
-import loja.bean.Funcionario;
 import loja.dao.ClienteDAO;
 import loja.dao.EnderecoDAO;
-import loja.dao.EnderecoFuncDAO;
-import loja.dao.FuncionarioDAO;
+
 
 public class FXMLListaCliente implements Initializable {
     @FXML TableView tabela = new TableView<>(); 
@@ -43,12 +41,13 @@ public class FXMLListaCliente implements Initializable {
          
          
          EnderecoDAO endereco = new EnderecoDAO();
-         FXMLUpdateFuncionario.setEstado(endereco.pesquisa(dados.getId()).get(0).getEstado());
-         FXMLUpdateFuncionario.setCidade(endereco.pesquisa(dados.getId()).get(0).getCidade());
-         FXMLUpdateFuncionario.setRua(endereco.pesquisa(dados.getId()).get(0).getRua());
-         FXMLUpdateFuncionario.setBairro(endereco.pesquisa(dados.getId()).get(0).getBairro());
-         FXMLUpdateFuncionario.setNumero(endereco.pesquisa(dados.getId()).get(0).getNumero());
-         FXMLUpdateFuncionario.setCep(endereco.pesquisa(dados.getId()).get(0).getCep());
+         
+         FXMLUpdateCliente.setEstado(endereco.pesquisa(dados.getId()).get(0).getEstado());
+         FXMLUpdateCliente.setCidade(endereco.pesquisa(dados.getId()).get(0).getCidade());
+         FXMLUpdateCliente.setRua(endereco.pesquisa(dados.getId()).get(0).getRua());
+         FXMLUpdateCliente.setBairro(endereco.pesquisa(dados.getId()).get(0).getBairro());
+         FXMLUpdateCliente.setNumero(endereco.pesquisa(dados.getId()).get(0).getNumero());
+         FXMLUpdateCliente.setCep(endereco.pesquisa(dados.getId()).get(0).getCep());
          
      
          Parent root = FXMLLoader.load(getClass().getResource("FXMLUpdateCliente.fxml"));
@@ -86,7 +85,7 @@ public class FXMLListaCliente implements Initializable {
         try {
             tabela.setItems(FXCollections.observableArrayList(cliente.pesquisa()));
         } catch (SQLException ex) {
-            Logger.getLogger(FXMLListaFuncionario.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FXMLListaCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         tabela.getColumns().addAll(colunaId,colunaNome,colunaCPF,colunaTelefone);
  

@@ -61,7 +61,7 @@ public class EnderecoDAO {
     
     public  ArrayList<Endereco> pesquisa(String id) throws SQLException{
 
-      String sql = "SELECT * FROM endereco_funcionario WHERE id_funcionario = " + id; 
+      String sql = "SELECT * FROM endereco_cliente WHERE id_cliente = " + id; 
       ArrayList<Endereco> lista = new ArrayList<>();
       conexao.conectar();
 

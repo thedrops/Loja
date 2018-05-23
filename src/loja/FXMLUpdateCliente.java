@@ -59,7 +59,8 @@ public class FXMLUpdateCliente implements Initializable {
         cepDado = cep;
     }
       
-    //Dados Funcionario
+    //Dados Cliente
+    
     @FXML  private TextField nome;
     @FXML  private TextField telefone;
  
@@ -132,17 +133,7 @@ public class FXMLUpdateCliente implements Initializable {
         bairro.setText(bairroDado);
         cep.setText(cepDado);
         
-        /* mostrar dados nos campos      
-            FuncionarioDAO funcionario = new FuncionarioDAO();
-            
-            
-            
-        try {
-            nome.setText(funcionario.pesquisa().get(0).getNome());
-        } catch (SQLException ex) {
-            Logger.getLogger(FXMLUpdateFuncionario.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        */
+       
     }  
     
 }
