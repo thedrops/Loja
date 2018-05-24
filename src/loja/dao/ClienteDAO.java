@@ -86,6 +86,7 @@ public class ClienteDAO {
         
         //retornar erro ou Ok
         return b;
+       
     }
     
     public  ArrayList<Cliente> pesquisa() throws SQLException{

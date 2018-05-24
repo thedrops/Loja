@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -70,6 +71,20 @@ public class FXMLListaCliente implements Initializable {
           ClienteDAO cliente = new ClienteDAO();
           dados =  (Cliente) tabela.getSelectionModel().getSelectedItem();
           boolean c = cliente.deletar(dados.getId());
+          if(c){
+          Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
+            dialogoInfo.setTitle("Atualização de funcionário");
+            dialogoInfo.setHeaderText("Úsuario deletado com sucesso!");
+            dialogoInfo.setContentText("");
+            dialogoInfo.showAndWait();
+          }else{
+              Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
+            dialogoInfo.setTitle("Atualização de funcionário");
+            dialogoInfo.setHeaderText("Erro ao deletar!");
+            dialogoInfo.setContentText("");
+            dialogoInfo.showAndWait();
+          }
+          
     }
     
      
