@@ -45,6 +45,17 @@ public class FXMLInicio implements Initializable{
          
          
     }
+      public void abrirListaProduto(ActionEvent event) throws IOException{
+         Parent root = FXMLLoader.load(getClass().getResource("FXMLListaProduto.fxml"));
+         Stage stage = new Stage();
+         Scene scene = new Scene(root, 600, 600);
+         stage.setScene(scene);
+         stage.show();
+         
+         
+         
+         
+    }
     
     
    
