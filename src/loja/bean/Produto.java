@@ -1,14 +1,14 @@
-
+ 
 package loja.bean;
 
 public class Produto {
-    
+    int id;
     String tipo;
     double preco;
     String tamanho;
     String cor;
     String marca;
-    Fornecedor fornecedor;
+    String fornecedor;
 
     public String getTipo() {
         return tipo;
@@ -50,12 +50,20 @@ public class Produto {
         this.marca = marca;
     }
 
-    public Fornecedor getFornecedor() {
+    public String getFornecedor() {
         return fornecedor;
     }
 
-    public void setFornecedor(Fornecedor fornecedor) {
+    public void setFornecedor(String fornecedor) {
         this.fornecedor = fornecedor;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
 }
