@@ -272,14 +272,16 @@ DROP TABLE IF EXISTS `produto`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `produto` (
-  `id` int(11) NOT NULL ,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `tipo` varchar(50) DEFAULT NULL,
   `preco` double DEFAULT NULL,
   `tamanho` varchar(3) DEFAULT NULL,
   `cor` varchar(50) DEFAULT NULL,
   `marca` varchar(50) DEFAULT NULL,
-  `fornecedor` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  `cnpj` char(14) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `cnpj` (`cnpj`),
+  CONSTRAINT `produto_ibfk_1` FOREIGN KEY (`cnpj`) REFERENCES `fornecedor` (`cnpj`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
