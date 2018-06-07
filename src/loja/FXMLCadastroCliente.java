@@ -11,15 +11,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import loja.bean.Cliente;
 import loja.bean.Endereco;
-import loja.bean.Funcionario;
 import loja.dao.ClienteDAO;
 import loja.dao.EnderecoDAO;
-import loja.dao.EnderecoFuncDAO;
-import loja.dao.FuncionarioDAO;
 
 /**
  *

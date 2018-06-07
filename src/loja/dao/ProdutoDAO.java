@@ -19,7 +19,7 @@ public class ProdutoDAO {
      
     public boolean inserir(String tipo, Double preco, String tamanho, String cor, String marca, int id, String fornecedor){
     
-        String sql="insert into produto(tipo,preco,tamanho,cor,marca,id) "
+        String sql="insert into produto(tipo,preco,tamanho,cor,marca,id,fornecedor) "
                 + "VALUES('"+tipo+"','"+preco+"','"+tamanho+"','"+cor+"','"+marca+"','"+id+"','"+fornecedor+"' )" ;
         
         //conectar com banco de dados
