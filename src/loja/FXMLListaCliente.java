@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import loja.bean.Cliente;
 import loja.dao.ClienteDAO;
 import loja.dao.EnderecoDAO;
@@ -33,7 +35,7 @@ public class FXMLListaCliente implements Initializable {
         Cliente dados;
       
      
-      
+        
      public void alterar(ActionEvent event) throws IOException, SQLException{
          dados =  (Cliente) tabela.getSelectionModel().getSelectedItem();
          FXMLUpdateCliente.setId(dados.getId());
@@ -57,6 +59,24 @@ public class FXMLListaCliente implements Initializable {
          stage.setScene(scene);
          stage.show();
          
+         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent we) {
+
+                    ClienteDAO cliente = new ClienteDAO();
+                    try {
+                        tabela.getItems().setAll(FXCollections.observableArrayList(cliente.pesquisa()));
+                    } catch (SQLException ex) {
+                        Logger.getLogger(FXMLListaCliente.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+         
+         
+         
+         
+         
+         
      }
     
       public void cadastrar(ActionEvent event) throws IOException{
@@ -65,18 +85,30 @@ public class FXMLListaCliente implements Initializable {
             Scene scene = new Scene(root, 600, 600);
             stage.setScene(scene);
             stage.show();
+            
+            stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+                @Override
+                public void handle(WindowEvent we) {
+
+                    ClienteDAO cliente = new ClienteDAO();
+                    try {
+                        tabela.getItems().setAll(FXCollections.observableArrayList(cliente.pesquisa()));
+                    } catch (SQLException ex) {
+                        Logger.getLogger(FXMLListaCliente.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+            
      }
      
     public void deletar(ActionEvent event){
           ClienteDAO cliente = new ClienteDAO();
           dados =  (Cliente) tabela.getSelectionModel().getSelectedItem();
           boolean c = cliente.deletar(dados.getId());
+          int selectedIndex = tabela.getSelectionModel().getSelectedIndex();
           if(c){
-          Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
-            dialogoInfo.setTitle("Atualização de funcionário");
-            dialogoInfo.setHeaderText("Úsuario deletado com sucesso!");
-            dialogoInfo.setContentText("");
-            dialogoInfo.showAndWait();
+            tabela.getItems().remove(selectedIndex);
+            
           }else{
               Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);
             dialogoInfo.setTitle("Atualização de funcionário");
@@ -84,6 +116,10 @@ public class FXMLListaCliente implements Initializable {
             dialogoInfo.setContentText("");
             dialogoInfo.showAndWait();
           }
+          
+          
+          
+          
           
     }
     
