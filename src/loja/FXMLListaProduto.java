@@ -38,7 +38,7 @@ public class FXMLListaProduto implements Initializable {
     
     //Function botão  
        public void cadastrar(ActionEvent event) throws IOException{
-           Parent root = FXMLLoader.load(getClass().getResource("FXMLCadastroProduto.fxml"));
+           Parent root = FXMLLoader.load(getClass().getResource("FXMLCadastrarProduto.fxml"));
             Stage stage = new Stage();
             Scene scene = new Scene(root, 600, 600);
             stage.setScene(scene);
