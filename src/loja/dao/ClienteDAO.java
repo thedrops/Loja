@@ -118,6 +118,23 @@ public class ClienteDAO {
   }
 
     
-    
+     public  String qtdCliente() throws SQLException{
+
+
+      String sql = "SELECT LAST_INSERT_ID();"; 
+      conexao.conectar();
+      String Id = null;
+         try (ResultSet rs = conexao.pegarResultadoSQL(sql)) {        
+              while(rs.next()){
+            
+                  Id = rs.getString("LAST_INSERT_ID()");
+                  
+              }
+              rs.close();  
+          }
+        
+
+      return Id;
+  }
     
 }

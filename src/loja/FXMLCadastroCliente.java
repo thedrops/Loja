@@ -6,6 +6,7 @@
 package loja;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -28,7 +29,6 @@ public class FXMLCadastroCliente implements Initializable {
     
     @FXML private TextField nome;
     @FXML private TextField telefone;
-    @FXML private TextField id;
     @FXML private TextField cpf;
     
     //Dados endereco
@@ -43,11 +43,11 @@ public class FXMLCadastroCliente implements Initializable {
     //Function botão
     
     
-    public void cadastrarCliente(ActionEvent event){
+    public void cadastrarCliente(ActionEvent event) throws SQLException{
         //Cadastrar cliente
         boolean b = false;
         boolean c = false;
-        
+        boolean d = false;
         boolean verificacaoCampos = (cpf.getText().equals("") || nome.getText().equals("") ||
                 numero.getText().equals("") || estado.getText().equals("") || cidade.getText().equals("") ||
                 rua.getText().equals("") || bairro.getText().equals("") || cep.getText().equals(""));
@@ -58,7 +58,7 @@ public class FXMLCadastroCliente implements Initializable {
             cliente.setCpf(cpf.getText());
             cliente.setNome(nome.getText());
             cliente.setTelefone(telefone.getText());
-            cliente.setId(id.getText());
+            
 
     
             Endereco endereco = new Endereco(estado.getText(),cidade.getText(),rua.getText(),
@@ -68,8 +68,9 @@ public class FXMLCadastroCliente implements Initializable {
             ClienteDAO dao = new ClienteDAO(); 
             
             b = dao.inserir(cliente.getNome(),cliente.getCpf(),cliente.getTelefone());
+            String id_cliente = dao.qtdCliente();
             c  = enderecoDAO.inserir(endereco.getEstado(),endereco.getCidade(),
-                endereco.getRua(),endereco.getNumero(),endereco.getBairro(),endereco.getCep(),id.getText());
+                endereco.getRua(),endereco.getNumero(),endereco.getBairro(),endereco.getCep(),id_cliente);
         }
         
         if(verificacaoCampos){
@@ -101,7 +102,6 @@ public class FXMLCadastroCliente implements Initializable {
         //zerar cliente
     nome.setText("");
     telefone.setText("");
-    id.setText("");
     cpf.setText("");
     
     //Zerar endereco
