@@ -2,6 +2,7 @@ package loja;
 
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -29,7 +30,6 @@ public class FXMLCadastroFuncionario implements Initializable {
     @FXML private DatePicker datanasc;
     @FXML private TextField salario;
     @FXML private  ChoiceBox cargo;
-    @FXML private TextField id;
     
     //Dados endereco
     
@@ -43,7 +43,7 @@ public class FXMLCadastroFuncionario implements Initializable {
     //Function botão
     
     
-    public void cadastrar(ActionEvent event){
+    public void cadastrar(ActionEvent event) throws SQLException{
         //Cadastrar funcionario
         boolean b = false;
         boolean c = false;
@@ -70,9 +70,10 @@ public class FXMLCadastroFuncionario implements Initializable {
             EnderecoFuncDAO enderecoDAO = new EnderecoFuncDAO();
             FuncionarioDAO dao = new FuncionarioDAO(); 
             
-            b = dao.inserir(funcionario.getCpf(),funcionario.getNome(),funcionario.getDatanasc(),funcionario.getSalario(),funcionario.getCargo(),id.getText());
+            b = dao.inserir(funcionario.getCpf(),funcionario.getNome(),funcionario.getDatanasc(),funcionario.getSalario(),funcionario.getCargo());
+            String id_funcionario = dao.qtdFuncionario();
             c  = enderecoDAO.inserir(endereco.getEstado(),endereco.getCidade(),
-                endereco.getRua(),endereco.getNumero(),endereco.getBairro(),endereco.getCep(),id.getText());
+                endereco.getRua(),endereco.getNumero(),endereco.getBairro(),endereco.getCep(),id_funcionario);
         }
          if(verificacaoCampos){
             Alert dialogoInfo = new Alert(Alert.AlertType.INFORMATION);

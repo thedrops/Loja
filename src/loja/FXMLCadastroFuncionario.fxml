@@ -43,8 +43,6 @@
                               <TextField fx:id="cep" layoutX="262.0" layoutY="385.0" />
                               <Button layoutX="336.0" layoutY="425.0" mnemonicParsing="false" onAction="#cadastrar" text="Cadastrar" />
                               <Button layoutX="16.0" layoutY="425.0" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" />
-                              <TextField fx:id="id" layoutX="336.0" layoutY="50.0" prefHeight="25.0" prefWidth="44.0" />
-                              <Label layoutX="314.0" layoutY="54.0" text="ID" />
                               <ChoiceBox fx:id="cargo" layoutX="149.0" layoutY="206.0" prefWidth="150.0" />
                               <DatePicker fx:id="datanasc" layoutX="148.0" layoutY="126.0" prefHeight="25.0" prefWidth="150.0" />
                            </children>

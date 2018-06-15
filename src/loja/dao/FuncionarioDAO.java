@@ -44,11 +44,11 @@ public class FuncionarioDAO {
             b = false;
         return b;
     }
-    public boolean inserir(String cpf,String nome, String datanasc,String salario,String cargo,String id){
+    public boolean inserir(String cpf,String nome, String datanasc,String salario,String cargo){
         
         //Criar a sql com variáveis
-        String sql ="insert into funcionario(cpf,nome,dt_nasc,salario,cargo,prontuario) values('" + cpf + "','"+ nome + "','" + datanasc + 
-                "','" + salario + "','" + cargo + "','" + id +  "')";
+        String sql ="insert into funcionario(cpf,nome,dt_nasc,salario,cargo) values('" + cpf + "','"+ nome + "','" + datanasc + 
+                "','" + salario + "','" + cargo +  "')";
         
         //conectar com banco de dados
         conexao.conectar();
@@ -141,6 +141,25 @@ public class FuncionarioDAO {
           }
 
       return lista;
+  }
+    
+        public  String qtdFuncionario() throws SQLException{
+
+
+      String sql = "SELECT LAST_INSERT_ID();"; 
+      conexao.conectar();
+      String Id = null;
+         try (ResultSet rs = conexao.pegarResultadoSQL(sql)) {        
+              while(rs.next()){
+            
+                  Id = rs.getString("LAST_INSERT_ID()");
+                  
+              }
+              rs.close();  
+          }
+        
+
+      return Id;
   }
 
 }
